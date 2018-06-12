@@ -76,7 +76,7 @@ export default class OverlayMenu extends React.Component<tProps> {
         )}
       </Spring>,
       // $FlowFixMe
-      document.getElementById(this.rootId),
+      this.mount,
     )
   }
 }
