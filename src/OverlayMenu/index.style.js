@@ -1,12 +1,12 @@
 import styled from 'react-emotion'
 import { injectGlobal } from 'emotion'
 
-injectGlobal(() => ({
+injectGlobal({
   'body.component-overlay-menu-active': {
     maxHeight: '100vh',
     overflow: 'hidden',
   },
-}))
+})
 
 export default styled('div')(({ options: o }) => ({
   padding: '15px 30px',
@@ -21,7 +21,6 @@ export default styled('div')(({ options: o }) => ({
   bottom: 0,
   overflow: 'scroll',
   perspective: 1200,
-  fontFamily: 'Roboto Slab, sans-serif',
 
   nav: {
     display: 'flex',
