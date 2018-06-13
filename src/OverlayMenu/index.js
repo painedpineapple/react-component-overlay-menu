@@ -54,7 +54,7 @@ export default class OverlayMenu extends React.Component<tProps, tState> {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps: tProps, prevState: tState) {
     if (typeof document !== 'undefined') {
       // menu was active, but is about to not be
       if (prevProps.options.isActive && !this.props.options.isActive) {
@@ -97,7 +97,6 @@ export default class OverlayMenu extends React.Component<tProps, tState> {
       ...props
     } = this.props
     const { items, rootId, isActive } = options
-    console.log(this.state.scrollTop)
     return isActive
       ? ReactDOM.createPortal(
           <Spring from={{ opacity: 0 }} to={{ opacity: 1 }} native>
