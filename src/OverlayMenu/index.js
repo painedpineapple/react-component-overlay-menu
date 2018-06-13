@@ -25,21 +25,27 @@ export default class OverlayMenu extends React.Component<tProps> {
   constructor(props: tProps) {
     super(props)
 
-    this.rootId = props.options.rootId || 'root'
-    this.root = document.getElementById(this.rootId)
-    this.mount = document.createElement('div')
+    if (typeof document !== 'undefined') {
+      this.rootId = props.options.rootId || 'root'
+      this.root = document.getElementById(this.rootId)
+      this.mount = document.createElement('div')
+    }
   }
   componentDidMount() {
-    this.root.appendChild(this.mount)
-    document
-      .getElementsByTagName('body')[0]
-      .classList.add('component-overlay-menu-active')
+    if (typeof document !== 'undefined') {
+      this.root.appendChild(this.mount)
+      document
+        .getElementsByTagName('body')[0]
+        .classList.add('component-overlay-menu-active')
+    }
   }
   componentWillUnmount() {
-    this.root.removeChild(this.mount)
-    document
-      .getElementsByTagName('body')[0]
-      .classList.remove('component-overlay-menu-active')
+    if (typeof document !== 'undefined') {
+      this.root.removeChild(this.mount)
+      document
+        .getElementsByTagName('body')[0]
+        .classList.remove('component-overlay-menu-active')
+    }
   }
   render() {
     const {
