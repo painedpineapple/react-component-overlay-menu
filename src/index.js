@@ -36,7 +36,7 @@ class App extends React.Component<{}, { isActive: boolean }> {
         <button
           onClick={this.handleClick}
           style={{
-            position: 'absolute',
+            position: 'sticky',
             right: 30,
             top: 30,
             zIndex: '9999999999999',
@@ -51,27 +51,26 @@ class App extends React.Component<{}, { isActive: boolean }> {
             </p>
           ))}
         </div>
-        {this.state.isActive && (
-          <OverlayMenu
-            options={{
-              items,
-              styles: overlayStyles,
-            }}
-            itemRender={({ item, styles }) => (
-              <a style={styles} href={item.url}>
-                {item.title}
-              </a>
-            )}
-            aboveMenuRender={() => (
-              <a href="/" className="logo-wrapper">
-                <Logo />
-              </a>
-            )}
-            belowMenuRender={() => (
-              <div style={{ margin: 60 }}>I will appear below the menu</div>
-            )}
-          />
-        )}
+        <OverlayMenu
+          options={{
+            isActive: this.state.isActive,
+            items,
+            styles: overlayStyles,
+          }}
+          itemRender={({ item, styles }) => (
+            <a style={styles} href={item.url}>
+              {item.title}
+            </a>
+          )}
+          aboveMenuRender={() => (
+            <a href="/" className="logo-wrapper">
+              <Logo />
+            </a>
+          )}
+          belowMenuRender={() => (
+            <div style={{ margin: 60 }}>I will appear below the menu</div>
+          )}
+        />
       </div>
     )
   }
