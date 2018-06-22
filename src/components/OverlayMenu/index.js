@@ -12,16 +12,16 @@ type tProps = {
     isActive: boolean,
     items: Array<any>,
     rootId?: string,
-    styles?: {},
+    styles?: {}
   },
   aboveMenuRender?: () => any,
   belowMenuRender?: () => any,
-  itemRender: (item: any, styles: any) => any,
+  itemRender: (item: any, styles: any) => any
 }
 
 type tState = {
   scrollTop: number,
-  prevScrollTop: number,
+  prevScrollTop: number
 }
 
 export default class OverlayMenu extends React.Component<tProps, tState> {
@@ -30,7 +30,7 @@ export default class OverlayMenu extends React.Component<tProps, tState> {
   rootId: string
   state = {
     scrollTop: 0,
-    prevScrollTop: 0,
+    prevScrollTop: 0
   }
   constructor(props: tProps) {
     super(props)
@@ -83,7 +83,7 @@ export default class OverlayMenu extends React.Component<tProps, tState> {
         (document.documentElement ? document.documentElement.scrollTop : 0)
 
       this.setState({
-        scrollTop,
+        scrollTop
       })
     }
   }
@@ -105,7 +105,7 @@ export default class OverlayMenu extends React.Component<tProps, tState> {
                 style={styles}
                 options={{
                   ...options,
-                  styles: options.styles || {},
+                  styles: options.styles || {}
                 }}
                 {...props}
               >
@@ -115,6 +115,7 @@ export default class OverlayMenu extends React.Component<tProps, tState> {
                     from={{ opacity: 0 }}
                     to={{ opacity: 1 }}
                     keys={items.map(item => item.id)}
+                    native
                   >
                     {items.map(item => styles => itemRender({ item, styles }))}
                   </Trail>
@@ -124,7 +125,7 @@ export default class OverlayMenu extends React.Component<tProps, tState> {
             )}
           </Spring>,
           // $FlowFixMe
-          this.mount,
+          this.mount
         )
       : null
   }

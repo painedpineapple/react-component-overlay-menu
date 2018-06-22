@@ -4,30 +4,39 @@ import faker from 'faker'
 import _ from 'lodash'
 //
 import Logo from './Logo'
-import OverlayMenu from './OverlayMenu'
+import OverlayMenu from './components/OverlayMenu'
+import OverlayMenuItem from './components/OverlayMenuItem'
 import overlayStyles from './styles'
 
 const items = _.times(10, () => ({
   id: faker.random.number(),
   url: faker.internet.url(),
   title: faker.lorem.word(),
+  items:
+    faker.random.number(2) % 2
+      ? []
+      : _.times(3, () => ({
+          id: faker.random.number(),
+          url: faker.internet.url(),
+          title: faker.lorem.word()
+        }))
 }))
 
 const styles = {
   p: {
     maxWidth: '800px',
     fontSize: 18,
-    margin: 30,
-  },
+    margin: 30
+  }
 }
 
 class App extends React.Component<{}, { isActive: boolean }> {
   state = {
-    isActive: false,
+    isActive: false
   }
   handleClick = () => {
     this.setState(prevState => ({
-      isActive: !prevState.isActive,
+      isActive: !prevState.isActive
     }))
   }
   render() {
@@ -39,7 +48,7 @@ class App extends React.Component<{}, { isActive: boolean }> {
             position: 'sticky',
             right: 30,
             top: 30,
-            zIndex: '9999999999999',
+            zIndex: '9999999999999'
           }}
         >
           Toggle Menu
@@ -55,12 +64,10 @@ class App extends React.Component<{}, { isActive: boolean }> {
           options={{
             isActive: this.state.isActive,
             items,
-            styles: overlayStyles,
+            styles: overlayStyles
           }}
           itemRender={({ item, styles }) => (
-            <a style={styles} href={item.url}>
-              {item.title}
-            </a>
+            <OverlayMenuItem item={item} styles={styles} />
           )}
           aboveMenuRender={() => (
             <a href="/" className="logo-wrapper">
