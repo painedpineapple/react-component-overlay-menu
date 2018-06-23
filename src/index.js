@@ -18,25 +18,25 @@ const items = _.times(10, () => ({
       : _.times(3, () => ({
           id: faker.random.number(),
           url: faker.internet.url(),
-          title: faker.lorem.word()
-        }))
+          title: faker.lorem.word(),
+        })),
 }))
 
 const styles = {
   p: {
     maxWidth: '800px',
     fontSize: 18,
-    margin: 30
-  }
+    margin: 30,
+  },
 }
 
 class App extends React.Component<{}, { isActive: boolean }> {
   state = {
-    isActive: false
+    isActive: true,
   }
   handleClick = () => {
     this.setState(prevState => ({
-      isActive: !prevState.isActive
+      isActive: !prevState.isActive,
     }))
   }
   render() {
@@ -48,7 +48,7 @@ class App extends React.Component<{}, { isActive: boolean }> {
             position: 'sticky',
             right: 30,
             top: 30,
-            zIndex: '9999999999999'
+            zIndex: '9999999999999',
           }}
         >
           Toggle Menu
@@ -64,11 +64,9 @@ class App extends React.Component<{}, { isActive: boolean }> {
           options={{
             isActive: this.state.isActive,
             items,
-            styles: overlayStyles
+            styles: overlayStyles,
           }}
-          itemRender={({ item, styles }) => (
-            <OverlayMenuItem item={item} styles={styles} />
-          )}
+          itemRender={itemProps => <OverlayMenuItem {...itemProps} />}
           aboveMenuRender={() => (
             <a href="/" className="logo-wrapper">
               <Logo />
