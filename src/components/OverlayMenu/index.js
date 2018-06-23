@@ -122,7 +122,7 @@ export default class OverlayMenu extends React.Component<tProps, tState> {
       belowMenuRender,
       ...props
     } = this.props
-    const { items, rootId, isActive } = options
+    const { items, isActive } = options
     return isActive
       ? ReactDOM.createPortal(
           <Spring from={{ opacity: 0 }} to={{ opacity: 1 }} native>

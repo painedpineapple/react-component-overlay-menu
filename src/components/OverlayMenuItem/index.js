@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { animated } from 'react-spring'
+import { animated, Transition } from 'react-spring'
 //
 import IconChevronDown from '../Icons/icon-chevron-down'
 
@@ -36,12 +36,25 @@ export default class OverlayMenuItem extends React.Component<tProps, tState> {
                   <IconChevronDown />
                 </button>
 
-                {subMenuActive &&
-                  item.items.map(subItem => (
-                    <div className="item-wrapper item-wrapper-lvl-2">
-                      <a href={subItem.url}>{subItem.title}</a>
-                    </div>
-                  ))}
+                {subMenuActive && (
+                  <div className="subitems-container">
+                    <Transition
+                      keys={item.items.map(item => item.id)}
+                      from={{ opacity: 0, height: 0 }}
+                      enter={{ opacity: 1, height: 10 }}
+                      leave={{ opacity: 0, height: 0, pointerEvents: 'none' }}
+                    >
+                      {item.items.map(subItem => styles => (
+                        <div
+                          style={styles}
+                          className="item-wrapper item-wrapper-lvl-2"
+                        >
+                          <a href={subItem.url}>{subItem.title}</a>
+                        </div>
+                      ))}
+                    </Transition>
+                  </div>
+                )}
               </React.Fragment>
             )}
         </div>

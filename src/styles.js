@@ -1,7 +1,7 @@
 export default {
   a: {
     color: 'tomato',
-    textDecoration: 'none'
+    textDecoration: 'none',
   },
 
   button: {
@@ -12,8 +12,8 @@ export default {
     '&:focus': { outline: 'none' },
 
     svg: {
-      width: 20
-    }
+      width: 20,
+    },
   },
 
   '.item-wrapper': {
@@ -26,10 +26,14 @@ export default {
       display: 'block',
       width: '100%',
       padding: '10px 0',
+    },
+  },
 
-      a: {
-        color: 'rebeccapurple'
-      }
-    }
-  }
+  '.subitems-container': {
+    width: '100%',
+
+    a: {
+      color: 'rebeccapurple',
+    },
+  },
 }
