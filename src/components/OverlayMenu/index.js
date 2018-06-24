@@ -102,7 +102,7 @@ export default class OverlayMenu extends React.Component<tProps, tState> {
       return {
         activeSubMenus: {
           ...this.activeSubMenusDefaultState,
-          [id]: true,
+          [id]: !prevState.activeSubMenus[id],
         },
       }
     })
