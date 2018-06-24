@@ -32,11 +32,17 @@ export default class OverlayMenuItem extends React.Component<tProps, tState> {
         <div className="item-wrapper">
           {/* $FlowFixMe */}
           {(!item.url || item.url === '#') && item.items.length > 0 ? (
-            <button onClick={this.toggleSubMenu} className="item">
+            <button
+              onClick={this.toggleSubMenu}
+              className={`item  ${subMenuActive ? 'is-active' : ''}`}
+            >
               {item.title}
             </button>
           ) : (
-            <a href={item.url} className="item">
+            <a
+              href={item.url}
+              className={`item ${subMenuActive ? 'is-active' : ''}`}
+            >
               {item.title}
             </a>
           )}
@@ -44,7 +50,10 @@ export default class OverlayMenuItem extends React.Component<tProps, tState> {
           {item.items &&
             item.items.length > 0 && (
               <React.Fragment>
-                <button onClick={this.toggleSubMenu}>
+                <button
+                  onClick={this.toggleSubMenu}
+                  className={`icon-wrapper ${subMenuActive ? 'is-active' : ''}`}
+                >
                   <IconChevronDown />
                 </button>
 
