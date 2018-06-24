@@ -14,6 +14,11 @@ type tProps = {
       url: string,
       id: string | number,
       title: string,
+      items?: Array<{
+        url: string,
+        id: string | number,
+        title: string,
+      }>,
     }>,
     rootId?: string,
     styles?: {},
@@ -33,6 +38,7 @@ export default class OverlayMenu extends React.Component<tProps, tState> {
   root: any
   mount: any
   rootId: string
+  activeSubMenusDefaultState: {}
   state = {
     scrollTop: 0,
     prevScrollTop: 0,

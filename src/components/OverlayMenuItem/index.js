@@ -9,6 +9,11 @@ type tProps = {
     url: string,
     title: string,
     id: string | number,
+    items?: Array<{
+      url: string,
+      id: string | number,
+      title: string,
+    }>,
   },
   subMenuActive: boolean,
   toggleSubMenu: (id: string | number) => void,
@@ -37,6 +42,7 @@ export default class OverlayMenuItem extends React.Component<tProps, tState> {
                 {subMenuActive && (
                   <div className="subitems-container">
                     <Trail
+                      // $FlowFixMe
                       keys={item.items.map(item => item.id)}
                       from={{ opacity: 0 }}
                       to={{ opacity: 1 }}
