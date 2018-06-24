@@ -1,4 +1,14 @@
 export default {
+  '.logo-wrapper': {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '0 20px 10px',
+
+    svg: {
+      width: 100,
+    },
+  },
+
   a: {
     color: 'tomato',
     textDecoration: 'none',

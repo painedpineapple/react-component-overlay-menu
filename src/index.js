@@ -32,7 +32,7 @@ const styles = {
 
 class App extends React.Component<{}, { isActive: boolean }> {
   state = {
-    isActive: true,
+    isActive: false,
   }
   handleClick = () => {
     this.setState(prevState => ({
@@ -45,9 +45,9 @@ class App extends React.Component<{}, { isActive: boolean }> {
         <button
           onClick={this.handleClick}
           style={{
-            position: 'sticky',
-            right: 30,
-            top: 30,
+            position: 'fixed',
+            right: 20,
+            top: 20,
             zIndex: '9999999999999',
           }}
         >

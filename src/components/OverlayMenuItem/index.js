@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import { animated, Transition } from 'react-spring'
+import { animated, Trail } from 'react-spring'
 //
 import IconChevronDown from '../Icons/icon-chevron-down'
 
@@ -15,9 +15,7 @@ type tProps = {
   styles: any,
 }
 
-type tState = {
-  itemsActive: boolean,
-}
+type tState = {}
 
 export default class OverlayMenuItem extends React.Component<tProps, tState> {
   toggleSubMenu = () => this.props.toggleSubMenu(this.props.item.id)
@@ -38,11 +36,10 @@ export default class OverlayMenuItem extends React.Component<tProps, tState> {
 
                 {subMenuActive && (
                   <div className="subitems-container">
-                    <Transition
+                    <Trail
                       keys={item.items.map(item => item.id)}
-                      from={{ opacity: 0, height: 0 }}
-                      enter={{ opacity: 1, height: 10 }}
-                      leave={{ opacity: 0, height: 0, pointerEvents: 'none' }}
+                      from={{ opacity: 0 }}
+                      to={{ opacity: 1 }}
                     >
                       {item.items.map(subItem => styles => (
                         <div
@@ -52,7 +49,7 @@ export default class OverlayMenuItem extends React.Component<tProps, tState> {
                           <a href={subItem.url}>{subItem.title}</a>
                         </div>
                       ))}
-                    </Transition>
+                    </Trail>
                   </div>
                 )}
               </React.Fragment>

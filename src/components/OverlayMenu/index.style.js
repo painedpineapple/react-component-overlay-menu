@@ -10,8 +10,7 @@ injectGlobal({
 
 export default styled('div')(({ options: o }) => ({
   padding: '15px 30px',
-  display: 'flex',
-  flexDirection: 'column',
+  display: 'block',
   backgroundColor: 'rgba(255,255,255, 0.98)',
   position: 'absolute',
   zIndex: 900,
