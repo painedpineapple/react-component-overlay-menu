@@ -29,8 +29,17 @@ export default class OverlayMenuItem extends React.Component<tProps, tState> {
 
     return (
       <animated.div style={styles} className="item-container">
-        <div className="item-wrapper item-wrapper-lvl-1">
-          <a href={item.url}>{item.title}</a>
+        <div className="item-wrapper">
+          {/* $FlowFixMe */}
+          {(!item.url || item.url === '#') && item.items.length > 0 ? (
+            <button onClick={this.toggleSubMenu} className="item">
+              {item.title}
+            </button>
+          ) : (
+            <a href={item.url} className="item">
+              {item.title}
+            </a>
+          )}
 
           {item.items &&
             item.items.length > 0 && (
@@ -48,11 +57,10 @@ export default class OverlayMenuItem extends React.Component<tProps, tState> {
                       to={{ opacity: 1 }}
                     >
                       {item.items.map(subItem => styles => (
-                        <div
-                          style={styles}
-                          className="item-wrapper item-wrapper-lvl-2"
-                        >
-                          <a href={subItem.url}>{subItem.title}</a>
+                        <div style={styles} className="subitem-wrapper">
+                          <a href={subItem.url} className="subitem">
+                            {subItem.title}
+                          </a>
                         </div>
                       ))}
                     </Trail>
