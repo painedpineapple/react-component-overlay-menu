@@ -1,4 +1,6 @@
-export default {
+import { css } from 'emotion'
+
+export const overlayStyles = css({
   '.logo-wrapper': {
     display: 'flex',
     justifyContent: 'center',
@@ -46,4 +48,4 @@ export default {
       color: 'rebeccapurple',
     },
   },
-}
+})

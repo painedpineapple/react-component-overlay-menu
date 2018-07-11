@@ -3,26 +3,22 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Spring, animated, Trail } from 'react-spring'
 //
-import Container from './index.style'
-
-const AnimatedContainer = animated(Container)
+import { defaultStyles } from './index.style'
 
 type tProps = {
-  options: {
-    isActive: boolean,
-    items: Array<{
+  isActive: boolean,
+  items: Array<{
+    url: string,
+    id: string | number,
+    title: string,
+    items?: Array<{
       url: string,
       id: string | number,
       title: string,
-      items?: Array<{
-        url: string,
-        id: string | number,
-        title: string,
-      }>,
     }>,
-    rootId?: string,
-    styles?: {},
-  },
+  }>,
+  rootId?: string,
+  css?: '', // returned class string of emotion's css function
   aboveMenuRender?: () => any,
   belowMenuRender?: () => any,
   itemRender: (item: any, styles: any) => any,
@@ -34,7 +30,7 @@ type tState = {
   activeSubMenus: {},
 }
 
-export class OverlayMenu extends React.Component<tProps, tState> {
+export default class OverlayMenu extends React.Component<tProps, tState> {
   root: any
   mount: any
   rootId: string
@@ -48,7 +44,7 @@ export class OverlayMenu extends React.Component<tProps, tState> {
     super(props)
 
     this.activeSubMenusDefaultState = {
-      ...this.props.options.items.reduce(
+      ...this.props.items.reduce(
         (obj, item) => ({ ...obj, [item.id]: false }),
         {},
       ),
@@ -57,7 +53,7 @@ export class OverlayMenu extends React.Component<tProps, tState> {
     this.state.activeSubMenus = this.activeSubMenusDefaultState
 
     if (typeof document !== 'undefined') {
-      this.rootId = props.options.rootId || 'root'
+      this.rootId = props.rootId || 'root'
       this.root = document.getElementById(this.rootId)
       this.mount = document.createElement('div')
     }
@@ -78,14 +74,14 @@ export class OverlayMenu extends React.Component<tProps, tState> {
   componentDidUpdate(prevProps: tProps, prevState: tState) {
     if (typeof document !== 'undefined') {
       // menu was active, but is about to not be
-      if (prevProps.options.isActive && !this.props.options.isActive) {
+      if (prevProps.isActive && !this.props.isActive) {
         window.scrollTo(0, prevState.prevScrollTop)
 
         document
           .getElementsByTagName('body')[0]
           .classList.remove('component-overlay-menu-active')
         // menu wasn't active, but is about to be
-      } else if (!prevProps.options.isActive && this.props.options.isActive) {
+      } else if (!prevProps.isActive && this.props.isActive) {
         //         window.scrollTo(0, this.state.scrollTop)
         this.setState({ prevScrollTop: prevState.scrollTop })
         window.scrollTo(0, 0)
@@ -122,23 +118,23 @@ export class OverlayMenu extends React.Component<tProps, tState> {
 
   render() {
     const {
-      options,
       itemRender,
       aboveMenuRender,
       belowMenuRender,
+      isActive,
+      items,
+      rootId,
+      css,
       ...props
     } = this.props
-    const { items, isActive } = options
+
     return isActive
       ? ReactDOM.createPortal(
           <Spring from={{ opacity: 0 }} to={{ opacity: 1 }} native>
             {styles => (
-              <AnimatedContainer
+              <animated.div
                 style={styles}
-                options={{
-                  ...options,
-                  styles: options.styles || {},
-                }}
+                className={`${defaultStyles} ${css || ''}`}
                 {...props}
               >
                 {aboveMenuRender && aboveMenuRender()}
@@ -160,7 +156,7 @@ export class OverlayMenu extends React.Component<tProps, tState> {
                   </Trail>
                 </nav>
                 {belowMenuRender && belowMenuRender()}
-              </AnimatedContainer>
+              </animated.div>
             )}
           </Spring>,
           // $FlowFixMe

@@ -1,5 +1,4 @@
-import styled from 'react-emotion'
-import { injectGlobal } from 'emotion'
+import { injectGlobal, css } from 'emotion'
 
 injectGlobal({
   'body.component-overlay-menu-active': {
@@ -8,7 +7,7 @@ injectGlobal({
   },
 })
 
-export default styled('div')(({ options: o }) => ({
+export const defaultStyles = css({
   padding: '15px 30px',
   display: 'block',
   backgroundColor: 'rgba(255,255,255, 0.98)',
@@ -25,6 +24,4 @@ export default styled('div')(({ options: o }) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-
-  ...o.styles,
-}))
+})

@@ -4,9 +4,9 @@ import faker from 'faker'
 import _ from 'lodash'
 //
 import Logo from './Logo'
-import { OverlayMenu } from './components/OverlayMenu'
-import { OverlayMenuItem } from './components/OverlayMenuItem'
-import overlayStyles from './styles'
+import OverlayMenu from './components/OverlayMenu'
+import OverlayMenuItem from './components/OverlayMenuItem'
+import { overlayStyles } from './styles'
 
 const items = _.times(10, () => ({
   id: faker.random.number(),
@@ -61,10 +61,10 @@ class App extends React.Component<{}, { isActive: boolean }> {
           ))}
         </div>
         <OverlayMenu
-          options={{
+          {...{
             isActive: this.state.isActive,
             items,
-            styles: overlayStyles,
+            css: overlayStyles,
           }}
           itemRender={itemProps => <OverlayMenuItem {...itemProps} />}
           aboveMenuRender={() => (
