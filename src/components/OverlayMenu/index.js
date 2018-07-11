@@ -34,7 +34,7 @@ type tState = {
   activeSubMenus: {},
 }
 
-export default class OverlayMenu extends React.Component<tProps, tState> {
+export class OverlayMenu extends React.Component<tProps, tState> {
   root: any
   mount: any
   rootId: string

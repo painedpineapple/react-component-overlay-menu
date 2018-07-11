@@ -2,7 +2,7 @@
 import React from 'react'
 import { animated, Trail } from 'react-spring'
 //
-import IconChevronDown from '../Icons/icon-chevron-down'
+import { IconChevronDown } from '../Icons/icon-chevron-down'
 
 type tProps = {
   item: {
@@ -22,7 +22,7 @@ type tProps = {
 
 type tState = {}
 
-export default class OverlayMenuItem extends React.Component<tProps, tState> {
+export class OverlayMenuItem extends React.Component<tProps, tState> {
   toggleSubMenu = () => this.props.toggleSubMenu(this.props.item.id)
   render() {
     const { styles, item, subMenuActive } = this.props

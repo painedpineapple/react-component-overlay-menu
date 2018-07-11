@@ -4,8 +4,8 @@ import faker from 'faker'
 import _ from 'lodash'
 //
 import Logo from './Logo'
-import OverlayMenu from './components/OverlayMenu'
-import OverlayMenuItem from './components/OverlayMenuItem'
+import { OverlayMenu } from './components/OverlayMenu'
+import { OverlayMenuItem } from './components/OverlayMenuItem'
 import overlayStyles from './styles'
 
 const items = _.times(10, () => ({
